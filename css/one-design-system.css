@@ -1,0 +1,1758 @@
+/* ============================================================================
+   OTN DESIGN SYSTEM — CSS Theme & Component Guide
+   Version: 1.0
+   Source: Extracted from Patient Messaging & Calendar Preference Selector
+   
+   HOW TO USE:
+   1. Import this file (or copy :root variables) into your project
+   2. Apply .otn-ds as a wrapper class on your root element
+   3. Use the documented class patterns for consistent UI
+   
+   For React/HTML artifacts: wrap your component in <div className="otn-ds">
+   and reference these variables + utility classes.
+   ============================================================================ */
+
+
+/* ============================================================================
+   1. DESIGN TOKENS (CSS Custom Properties)
+   ============================================================================ */
+:root,
+.otn-ds {
+
+    /* ── Typography ────────────────────────────────────────────────────────── */
+    --otn-font-family:       -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                             "Helvetica Neue", Arial, sans-serif;
+    --otn-font-mono:         'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+
+    --otn-text-xs:           10px;
+    --otn-text-sm:           11px;
+    --otn-text-base:         13px;
+    --otn-text-md:           14px;
+    --otn-text-lg:           15px;
+    --otn-text-xl:           16px;
+    --otn-text-2xl:          20px;
+
+    --otn-leading-tight:     1.3;
+    --otn-leading-normal:    1.5;
+    --otn-leading-relaxed:   1.6;
+
+    --otn-weight-normal:     400;
+    --otn-weight-medium:     500;
+    --otn-weight-semibold:   600;
+    --otn-weight-bold:       700;
+
+    /* ── Color Palette ─────────────────────────────────────────────────────── */
+
+    /* Neutrals (gray-50 → gray-900) */
+    --otn-gray-50:           #f9fafb;
+    --otn-gray-100:          #f3f4f6;
+    --otn-gray-200:          #e5e7eb;
+    --otn-gray-300:          #d1d5db;
+    --otn-gray-400:          #9ca3af;
+    --otn-gray-500:          #6b7280;
+    --otn-gray-600:          #4b5563;
+    --otn-gray-700:          #374151;
+    --otn-gray-800:          #1f2937;
+    --otn-gray-900:          #111827;
+
+    /* Primary — Blue */
+    --otn-blue-50:           #eff6ff;
+    --otn-blue-100:          #dbeafe;
+    --otn-blue-200:          #bfdbfe;
+    --otn-blue-300:          #93c5fd;
+    --otn-blue-400:          #60a5fa;
+    --otn-blue-500:          #3b82f6;
+    --otn-blue-600:          #2563eb;
+    --otn-blue-700:          #1d4ed8;
+    --otn-blue-800:          #1e40af;
+    --otn-blue-900:          #1e3a5f;
+
+    /* OTN Brand Blue (header accent) */
+    --otn-brand-blue:        #3b9be5;
+    --otn-brand-blue-dark:   #2d8ad4;
+
+    /* Success — Green */
+    --otn-green-50:          #f0fdf4;
+    --otn-green-100:         #dcfce7;
+    --otn-green-200:         #bbf7d0;
+    --otn-green-300:         #86efac;
+    --otn-green-400:         #4ade80;
+    --otn-green-500:         #22c55e;
+    --otn-green-600:         #16a34a;
+    --otn-green-700:         #059669;
+    --otn-green-800:         #065f46;
+    --otn-green-900:         #166534;
+
+    /* Warning — Amber */
+    --otn-amber-50:          #fffbeb;
+    --otn-amber-100:         #fef3c7;
+    --otn-amber-200:         #fde68a;
+    --otn-amber-300:         #fcd34d;
+    --otn-amber-400:         #fbbf24;
+    --otn-amber-500:         #f59e0b;
+    --otn-amber-600:         #d97706;
+    --otn-amber-700:         #b45309;
+    --otn-amber-800:         #92400e;
+
+    /* Danger — Red */
+    --otn-red-50:            #fef2f2;
+    --otn-red-100:           #fee2e2;
+    --otn-red-200:           #fecaca;
+    --otn-red-300:           #fca5a5;
+    --otn-red-500:           #ef4444;
+    --otn-red-600:           #dc2626;
+    --otn-red-700:           #b91c1c;
+    --otn-red-800:           #991b1b;
+
+    /* Purple (admin / shared accent) */
+    --otn-purple-50:         #f5f3ff;
+    --otn-purple-100:        #ede9fe;
+    --otn-purple-200:        #ddd6fe;
+    --otn-purple-300:        #c4b5fd;
+    --otn-purple-600:        #7c3aed;
+    --otn-purple-700:        #6d28d9;
+
+    /* Mint / Emerald (opt-in, language) */
+    --otn-emerald-50:        #ecfdf5;
+    --otn-emerald-200:       #a7f3d0;
+
+    /* ── Semantic Aliases ──────────────────────────────────────────────────── */
+    --otn-text-primary:      var(--otn-gray-900);
+    --otn-text-secondary:    var(--otn-gray-700);
+    --otn-text-muted:        var(--otn-gray-500);
+    --otn-text-placeholder:  var(--otn-gray-400);
+
+    --otn-bg-page:           #fff;
+    --otn-bg-surface:        var(--otn-gray-50);
+    --otn-bg-elevated:       #fff;
+
+    --otn-border-default:    var(--otn-gray-200);
+    --otn-border-strong:     var(--otn-gray-300);
+    --otn-border-focus:      var(--otn-blue-500);
+
+    --otn-primary:           var(--otn-blue-600);
+    --otn-primary-hover:     var(--otn-blue-700);
+    --otn-primary-gradient:  linear-gradient(135deg, var(--otn-blue-600), var(--otn-blue-700));
+
+    --otn-success:           var(--otn-green-700);
+    --otn-warning:           var(--otn-amber-600);
+    --otn-danger:            var(--otn-red-600);
+
+    /* ── Spacing Scale ─────────────────────────────────────────────────────── */
+    --otn-space-1:           2px;
+    --otn-space-2:           4px;
+    --otn-space-3:           6px;
+    --otn-space-4:           8px;
+    --otn-space-5:           10px;
+    --otn-space-6:           12px;
+    --otn-space-8:           16px;
+    --otn-space-10:          20px;
+    --otn-space-12:          24px;
+
+    /* ── Border Radius ─────────────────────────────────────────────────────── */
+    --otn-radius-sm:         4px;
+    --otn-radius-md:         6px;
+    --otn-radius-lg:         8px;
+    --otn-radius-xl:         10px;
+    --otn-radius-2xl:        12px;
+    --otn-radius-3xl:        14px;
+    --otn-radius-4xl:        16px;
+    --otn-radius-pill:       20px;
+    --otn-radius-full:       50%;
+
+    /* ── Shadows ───────────────────────────────────────────────────────────── */
+    --otn-shadow-xs:         0 1px 2px rgba(0,0,0,.04);
+    --otn-shadow-sm:         0 1px 2px rgba(0,0,0,.06);
+    --otn-shadow-md:         0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06);
+    --otn-shadow-lg:         0 10px 40px rgba(0,0,0,.15);
+    --otn-shadow-xl:         0 20px 40px rgba(0,0,0,.2);
+    --otn-shadow-2xl:        0 25px 50px -12px rgba(0,0,0,.25);
+    --otn-shadow-primary:    0 2px 4px rgba(37,99,235,.3);
+    --otn-shadow-success:    0 1px 2px rgba(5,150,105,.25);
+
+    /* ── Transitions ───────────────────────────────────────────────────────── */
+    --otn-ease-default:      all .15s ease;
+    --otn-ease-fast:         all .1s ease;
+    --otn-ease-transform:    transform .2s ease;
+}
+
+
+/* ============================================================================
+   2. BASE RESET
+   ============================================================================ */
+.otn-ds {
+    font-family: var(--otn-font-family);
+    font-size: var(--otn-text-md);
+    color: var(--otn-text-primary);
+    line-height: var(--otn-leading-normal);
+}
+
+.otn-ds * {
+    box-sizing: border-box;
+}
+
+
+/* ============================================================================
+   3. COMPONENT PATTERNS
+   ============================================================================
+   
+   Below are reusable class patterns. Each section documents:
+   - The HTML structure expected
+   - Key modifier classes
+   - Design rationale
+   ============================================================================ */
+
+
+/* ── 3a. Container Card ────────────────────────────────────────────────────
+   Usage:  <div class="otn-container"> ... </div>
+   The main wrapper for a widget / panel.
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-container {
+    background: var(--otn-bg-page);
+    border-radius: var(--otn-radius-2xl);
+    border: 1px solid var(--otn-border-default);
+    box-shadow: var(--otn-shadow-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ── 3b. Header ────────────────────────────────────────────────────────────
+   Two flavors used across OTN:
+   
+   .otn-header-brand   → OTN sky-blue   (#3b9be5)  — patient-facing panels
+   .otn-header-primary  → Blue gradient  — admin / settings panels
+   
+   Structure:
+     <div class="otn-header otn-header-brand">
+       <div class="otn-header-left"> ... </div>
+       <div class="otn-header-actions"> ... </div>
+     </div>
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-header {
+    padding: var(--otn-space-8) var(--otn-space-10);
+    color: #fff;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.otn-header-brand {
+    background: var(--otn-brand-blue);
+    border-bottom: 1px solid var(--otn-brand-blue-dark);
+}
+
+.otn-header-primary {
+    background: var(--otn-primary-gradient);
+    border-bottom: 1px solid var(--otn-blue-700);
+}
+
+.otn-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--otn-space-5);
+}
+
+.otn-header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--otn-space-4);
+}
+
+.otn-header-title {
+    font-size: var(--otn-text-xl);
+    font-weight: var(--otn-weight-semibold);
+    margin: 0;
+    color: #fff;
+}
+
+.otn-header-subtitle {
+    font-size: var(--otn-text-sm);
+    margin: 0;
+    color: rgba(255,255,255,.85);
+}
+
+
+/* ── 3c. Icon Box ──────────────────────────────────────────────────────────
+   Rounded square icon container. Sizes: sm (24px), md (32px), lg (36px), xl (48px)
+   Colors via modifier: --blue (default), --green, --red, --amber, --purple, --muted
+   
+   <div class="otn-icon-box otn-icon-box--lg otn-icon-box--blue">
+     <svg>...</svg>
+   </div>
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: var(--otn-radius-lg);
+}
+
+.otn-icon-box--sm  { width: 24px; height: 24px; border-radius: var(--otn-radius-md); }
+.otn-icon-box--md  { width: 32px; height: 32px; }
+.otn-icon-box--lg  { width: 36px; height: 36px; border-radius: var(--otn-radius-xl); }
+.otn-icon-box--xl  { width: 48px; height: 48px; border-radius: var(--otn-radius-2xl); }
+
+.otn-icon-box--blue   { background: var(--otn-blue-100);  color: var(--otn-blue-600); }
+.otn-icon-box--green  { background: var(--otn-green-100); color: var(--otn-green-700); }
+.otn-icon-box--red    { background: var(--otn-red-100);   color: var(--otn-red-600); }
+.otn-icon-box--amber  { background: var(--otn-amber-100); color: var(--otn-amber-600); }
+.otn-icon-box--purple { background: var(--otn-purple-100); color: var(--otn-purple-600); }
+.otn-icon-box--muted  { background: var(--otn-gray-100);  color: var(--otn-gray-400); }
+.otn-icon-box--white  { background: rgba(255,255,255,.15); color: #fff; }
+
+
+/* ── 3d. Buttons ───────────────────────────────────────────────────────────
+   
+   PRIMARY (filled gradient):
+     <button class="otn-btn otn-btn-primary">Send</button>
+   
+   SECONDARY (outlined):
+     <button class="otn-btn otn-btn-secondary">Cancel</button>
+   
+   GHOST (minimal, for toolbars):
+     <button class="otn-btn otn-btn-ghost">⋯</button>
+   
+   DANGER:
+     <button class="otn-btn otn-btn-danger">Delete</button>
+   
+   ICON-ONLY (square):
+     <button class="otn-btn otn-btn-icon">
+       <svg>...</svg>
+     </button>
+   
+   HEADER ICON (translucent white):
+     <button class="otn-btn otn-btn-header-icon">
+       <svg>...</svg>
+     </button>
+   
+   Modifiers:
+     .otn-btn--sm   → compact
+     .otn-btn--disabled
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--otn-space-4);
+    font-family: var(--otn-font-family);
+    font-size: var(--otn-text-base);
+    font-weight: var(--otn-weight-semibold);
+    border: none;
+    border-radius: var(--otn-radius-lg);
+    cursor: pointer;
+    transition: var(--otn-ease-default);
+    padding: 10px 20px;
+    line-height: 1;
+}
+
+.otn-btn--sm {
+    padding: 6px 12px;
+    font-size: var(--otn-text-sm);
+    border-radius: var(--otn-radius-md);
+}
+
+/* Primary */
+.otn-btn-primary {
+    background: var(--otn-primary-gradient);
+    color: #fff;
+    box-shadow: var(--otn-shadow-primary);
+}
+
+.otn-btn-primary:hover {
+    opacity: .9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(37,99,235,.3);
+}
+
+/* Secondary */
+.otn-btn-secondary {
+    background: var(--otn-bg-page);
+    color: var(--otn-gray-500);
+    border: 1px solid var(--otn-gray-300);
+}
+
+.otn-btn-secondary:hover {
+    background: var(--otn-gray-100);
+    border-color: var(--otn-gray-400);
+    color: var(--otn-gray-700);
+}
+
+/* Ghost */
+.otn-btn-ghost {
+    background: transparent;
+    color: var(--otn-gray-500);
+    padding: 6px;
+}
+
+.otn-btn-ghost:hover {
+    background: var(--otn-gray-100);
+    color: var(--otn-gray-700);
+}
+
+/* Danger */
+.otn-btn-danger {
+    background: var(--otn-red-600);
+    color: #fff;
+}
+
+.otn-btn-danger:hover {
+    background: var(--otn-red-700);
+}
+
+/* Success */
+.otn-btn-success {
+    background: var(--otn-green-600);
+    color: #fff;
+}
+
+/* Icon-only square button */
+.otn-btn-icon {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    color: var(--otn-gray-400);
+    border-radius: var(--otn-radius-md);
+}
+
+.otn-btn-icon:hover {
+    background: var(--otn-gray-100);
+    color: var(--otn-gray-700);
+}
+
+/* Header icon — translucent white for use on colored headers */
+.otn-btn-header-icon {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: rgba(255,255,255,.15);
+    color: #fff;
+    border-radius: var(--otn-radius-lg);
+}
+
+.otn-btn-header-icon:hover {
+    background: rgba(255,255,255,.25);
+    color: #fff;
+}
+
+/* Disabled state (works on any button variant) */
+.otn-btn--disabled,
+.otn-btn:disabled {
+    background: var(--otn-gray-200);
+    color: var(--otn-gray-400);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+    border-color: var(--otn-gray-200);
+}
+
+
+/* ── 3e. Cards ─────────────────────────────────────────────────────────────
+   Selectable / clickable list item card.
+   
+   <div class="otn-card">
+     <div class="otn-icon-box otn-icon-box--md otn-icon-box--blue">…</div>
+     <div class="otn-card-info">
+       <div class="otn-card-title">Name</div>
+       <div class="otn-card-meta">Subtitle</div>
+     </div>
+     <div class="otn-card-actions">…</div>
+   </div>
+   
+   Modifiers:
+     .otn-card--selected    → blue highlight
+     .otn-card--muted       → dashed border, reduced opacity
+     .otn-card--dragging    → drag-in-progress
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-card {
+    display: flex;
+    align-items: center;
+    gap: var(--otn-space-5);
+    padding: 10px 12px;
+    background: #fff;
+    border-radius: var(--otn-radius-xl);
+    border: 1px solid var(--otn-border-default);
+    cursor: pointer;
+    transition: var(--otn-ease-default);
+    margin-bottom: 8px;
+    box-shadow: var(--otn-shadow-xs);
+}
+
+.otn-card:hover {
+    border-color: var(--otn-blue-300);
+    background: #f8faff;
+    box-shadow: 0 2px 4px rgba(59,130,246,.1);
+}
+
+.otn-card--selected {
+    border-color: var(--otn-blue-500);
+    background: var(--otn-blue-50);
+}
+
+.otn-card--muted {
+    opacity: .55;
+    background: var(--otn-gray-50);
+    border-style: dashed;
+}
+
+.otn-card--muted:hover {
+    opacity: .85;
+}
+
+.otn-card--dragging {
+    opacity: .5;
+    border-color: var(--otn-blue-500);
+    background: var(--otn-blue-100);
+}
+
+.otn-card-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.otn-card-title {
+    font-size: var(--otn-text-base);
+    font-weight: var(--otn-weight-semibold);
+    color: var(--otn-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.otn-card-meta {
+    font-size: var(--otn-text-sm);
+    color: var(--otn-text-muted);
+    margin-top: 2px;
+}
+
+/* Hover-reveal actions */
+.otn-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity .15s ease;
+}
+
+.otn-card:hover .otn-card-actions {
+    opacity: 1;
+}
+
+
+/* ── 3f. Form Inputs ───────────────────────────────────────────────────────
+   
+   TEXT INPUT:
+     <input class="otn-input" placeholder="…" />
+   
+   TEXTAREA:
+     <textarea class="otn-textarea"></textarea>
+   
+   SEARCH:
+     <div class="otn-search">
+       <svg>…</svg>
+       <input class="otn-search-input" />
+     </div>
+   
+   LABEL:
+     <label class="otn-label">Field name</label>
+     <span class="otn-label-hint">(optional)</span>
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-label {
+    display: block;
+    font-size: var(--otn-text-sm);
+    font-weight: var(--otn-weight-semibold);
+    color: var(--otn-gray-700);
+    margin-bottom: 6px;
+}
+
+.otn-label-hint {
+    font-weight: var(--otn-weight-normal);
+    color: var(--otn-gray-400);
+}
+
+.otn-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--otn-gray-300);
+    border-radius: var(--otn-radius-lg);
+    font-size: var(--otn-text-base);
+    font-family: var(--otn-font-family);
+    color: var(--otn-text-primary);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.otn-input:focus {
+    border-color: var(--otn-border-focus);
+    box-shadow: 0 0 0 3px rgba(59,130,246,.1);
+}
+
+.otn-input::placeholder {
+    color: var(--otn-text-placeholder);
+}
+
+.otn-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--otn-gray-300);
+    border-radius: var(--otn-radius-lg);
+    font-size: var(--otn-text-base);
+    font-family: var(--otn-font-mono);
+    line-height: var(--otn-leading-normal);
+    resize: none;
+    outline: none;
+    min-height: 100px;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.otn-textarea:focus {
+    border-color: var(--otn-border-focus);
+    box-shadow: 0 0 0 3px rgba(59,130,246,.1);
+}
+
+/* Search wrapper */
+.otn-search {
+    position: relative;
+}
+
+.otn-search svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--otn-gray-400);
+    width: 16px;
+    height: 16px;
+}
+
+.otn-search-input {
+    width: 100%;
+    padding: 8px 12px 8px 36px;
+    border: 1px solid var(--otn-border-default);
+    border-radius: var(--otn-radius-md);
+    font-size: var(--otn-text-base);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.otn-search-input:focus {
+    border-color: var(--otn-border-focus);
+    box-shadow: 0 0 0 2px rgba(59,130,246,.1);
+}
+
+
+/* ── 3g. Badges & Tags ─────────────────────────────────────────────────────
+   
+   STATUS BADGE:
+     <span class="otn-badge otn-badge--green">Active</span>
+   
+   TAG (compact inline label):
+     <span class="otn-tag otn-tag--blue">ABA</span>
+   
+   PILL (toggle-style):
+     <button class="otn-pill otn-pill--active">Option</button>
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: var(--otn-radius-sm);
+    font-size: var(--otn-text-xs);
+    font-weight: var(--otn-weight-semibold);
+    white-space: nowrap;
+}
+
+.otn-badge--blue   { background: var(--otn-blue-50);   color: var(--otn-blue-800); }
+.otn-badge--green  { background: var(--otn-green-50);  color: var(--otn-green-700); }
+.otn-badge--red    { background: var(--otn-red-50);    color: var(--otn-red-800); }
+.otn-badge--amber  { background: var(--otn-amber-50);  color: var(--otn-amber-800); }
+.otn-badge--purple { background: var(--otn-purple-50); color: var(--otn-purple-600); }
+.otn-badge--muted  { background: var(--otn-gray-100);  color: var(--otn-gray-500); }
+
+.otn-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 1px 6px;
+    border-radius: var(--otn-radius-sm);
+    font-size: var(--otn-text-xs);
+    font-weight: var(--otn-weight-medium);
+}
+
+.otn-tag--blue   { background: var(--otn-blue-50);   color: var(--otn-blue-600); }
+.otn-tag--green  { background: var(--otn-green-50);  color: var(--otn-green-700); }
+.otn-tag--red    { background: var(--otn-red-50);    color: var(--otn-red-600); }
+.otn-tag--amber  { background: var(--otn-amber-100); color: var(--otn-amber-800); }
+.otn-tag--muted  { background: var(--otn-gray-100);  color: var(--otn-gray-500); }
+
+/* Pill (toggleable) */
+.otn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border-radius: var(--otn-radius-pill);
+    border: 1.5px solid var(--otn-border-default);
+    font-size: var(--otn-text-sm);
+    font-weight: var(--otn-weight-medium);
+    cursor: pointer;
+    transition: var(--otn-ease-default);
+    background: #fff;
+    color: var(--otn-gray-500);
+}
+
+.otn-pill:hover {
+    background: var(--otn-gray-100);
+    border-color: var(--otn-gray-300);
+}
+
+.otn-pill--active {
+    font-weight: var(--otn-weight-bold);
+    box-shadow: var(--otn-shadow-sm);
+}
+
+.otn-pill--active-blue {
+    background: var(--otn-blue-50);
+    border-color: var(--otn-blue-200);
+    color: var(--otn-blue-700);
+}
+
+.otn-pill--active-green {
+    background: var(--otn-green-700);
+    border-color: var(--otn-green-700);
+    color: #fff;
+    box-shadow: var(--otn-shadow-success);
+}
+
+
+/* ── 3h. Tab Navigation ────────────────────────────────────────────────────
+   Pill-style tab bar used for view switching.
+   
+   <div class="otn-tab-bar">
+     <button class="otn-tab otn-tab--active">Tab A</button>
+     <button class="otn-tab">Tab B</button>
+   </div>
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-tab-bar {
+    display: flex;
+    gap: 2px;
+    background: var(--otn-gray-100);
+    border-radius: var(--otn-radius-lg);
+    padding: 2px;
+}
+
+.otn-tab {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 12px;
+    border-radius: var(--otn-radius-md);
+    border: none;
+    font-size: var(--otn-text-sm);
+    font-weight: var(--otn-weight-medium);
+    cursor: pointer;
+    transition: var(--otn-ease-default);
+    background: transparent;
+    color: var(--otn-gray-500);
+}
+
+.otn-tab:hover { color: var(--otn-gray-700); }
+
+.otn-tab--active {
+    background: #fff;
+    color: var(--otn-text-primary);
+    font-weight: var(--otn-weight-semibold);
+    box-shadow: 0 1px 2px rgba(0,0,0,.08);
+}
+
+
+/* ── 3i. Filter Chips ──────────────────────────────────────────────────────
+   Horizontal row of selectable filter toggles.
+   
+   <div class="otn-chip-row">
+     <button class="otn-chip otn-chip--active">All</button>
+     <button class="otn-chip">ABA</button>
+   </div>
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.otn-chip {
+    padding: 4px 10px;
+    border-radius: 16px;
+    border: 1px solid var(--otn-gray-300);
+    background: #fff;
+    font-size: var(--otn-text-sm);
+    font-weight: var(--otn-weight-medium);
+    color: var(--otn-gray-500);
+    cursor: pointer;
+    transition: var(--otn-ease-default);
+}
+
+.otn-chip:hover {
+    border-color: var(--otn-gray-400);
+    background: var(--otn-gray-50);
+}
+
+.otn-chip--active {
+    font-weight: var(--otn-weight-semibold);
+    /* Color set per-discipline; defaults to blue */
+    background: var(--otn-blue-50);
+    border-color: var(--otn-blue-300);
+    color: var(--otn-blue-700);
+}
+
+
+/* ── 3j. Dropdown Menus ────────────────────────────────────────────────────
+   Floating menu panel.
+   
+   <div class="otn-dropdown">
+     <div class="otn-dropdown-option otn-dropdown-option--selected">…</div>
+   </div>
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    background: #fff;
+    border-radius: var(--otn-radius-lg);
+    border: 1px solid var(--otn-border-default);
+    box-shadow: var(--otn-shadow-lg);
+    z-index: 50;
+    overflow: hidden;
+    min-width: 200px;
+}
+
+.otn-dropdown-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background .1s ease;
+    font-size: var(--otn-text-base);
+}
+
+.otn-dropdown-option:hover {
+    background: var(--otn-gray-50);
+}
+
+.otn-dropdown-option--selected {
+    background: var(--otn-blue-50);
+}
+
+
+/* ── 3k. Modals & Dialogs ─────────────────────────────────────────────────
+   
+   OVERLAY:
+     <div class="otn-overlay">
+       <div class="otn-dialog">
+         <div class="otn-dialog-header otn-dialog-header--blue">…</div>
+         <div class="otn-dialog-body">…</div>
+         <div class="otn-dialog-footer">…</div>
+       </div>
+     </div>
+   
+   Header modifiers: --blue, --amber, --red
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 16px;
+}
+
+.otn-dialog {
+    background: #fff;
+    border-radius: var(--otn-radius-3xl);
+    width: 100%;
+    max-width: 380px;
+    box-shadow: var(--otn-shadow-xl);
+    overflow: hidden;
+}
+
+.otn-dialog--wide { max-width: 520px; }
+
+.otn-dialog-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--otn-border-default);
+}
+
+.otn-dialog-header--blue  { background: var(--otn-blue-50);  border-bottom-color: var(--otn-blue-200); }
+.otn-dialog-header--amber { background: var(--otn-amber-50); border-bottom-color: var(--otn-amber-200); }
+.otn-dialog-header--red   { background: var(--otn-red-50);   border-bottom-color: var(--otn-red-200); }
+
+.otn-dialog-title {
+    font-size: var(--otn-text-md);
+    font-weight: var(--otn-weight-semibold);
+    color: var(--otn-text-primary);
+    margin: 0 0 1px 0;
+}
+
+.otn-dialog-subtitle {
+    font-size: var(--otn-text-sm);
+    color: var(--otn-text-muted);
+    margin: 0;
+}
+
+.otn-dialog-body {
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.otn-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 12px 18px;
+    background: var(--otn-gray-50);
+    border-top: 1px solid var(--otn-border-default);
+}
+
+
+/* ── 3l. Alert / Banner ────────────────────────────────────────────────────
+   Inline notification banners.
+   
+   <div class="otn-alert otn-alert--red">
+     <div class="otn-icon-box otn-icon-box--sm otn-icon-box--red">…</div>
+     <div class="otn-alert-content">
+       <div class="otn-alert-title">Heading</div>
+       <div class="otn-alert-detail">Body text</div>
+     </div>
+   </div>
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: var(--otn-radius-xl);
+    border: 1px solid;
+}
+
+.otn-alert--red    { background: var(--otn-red-50);   border-color: var(--otn-red-200); }
+.otn-alert--amber  { background: var(--otn-amber-50); border-color: var(--otn-amber-200); }
+.otn-alert--blue   { background: var(--otn-blue-50);  border-color: var(--otn-blue-200); }
+.otn-alert--green  { background: var(--otn-green-50); border-color: var(--otn-green-200); }
+
+.otn-alert-title {
+    font-size: var(--otn-text-base);
+    font-weight: var(--otn-weight-semibold);
+}
+
+.otn-alert-detail {
+    font-size: var(--otn-text-sm);
+    line-height: var(--otn-leading-relaxed);
+}
+
+.otn-alert--red   .otn-alert-title  { color: var(--otn-red-800); }
+.otn-alert--red   .otn-alert-detail { color: var(--otn-red-700); }
+.otn-alert--amber .otn-alert-title  { color: var(--otn-amber-800); }
+.otn-alert--amber .otn-alert-detail { color: var(--otn-amber-600); }
+.otn-alert--blue  .otn-alert-title  { color: var(--otn-blue-800); }
+.otn-alert--blue  .otn-alert-detail { color: var(--otn-blue-800); }
+
+
+/* ── 3m. Section Headers ───────────────────────────────────────────────────
+   Sticky section dividers inside scrollable lists.
+   
+   <div class="otn-section-header">CATEGORY</div>
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-section-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    margin: 6px 0 2px;
+    font-size: var(--otn-text-xs);
+    font-weight: var(--otn-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--otn-gray-500);
+    position: sticky;
+    top: 0;
+    background: rgba(249,250,251,.95);
+    backdrop-filter: blur(4px);
+    z-index: 1;
+    border-bottom: 1px solid var(--otn-border-default);
+}
+
+
+/* ── 3n. Avatar ────────────────────────────────────────────────────────────
+   Circular avatar with gradient fallback (from Calendar Pref Selector).
+   
+   <div class="otn-avatar">
+     <img class="otn-avatar-img" src="…" />
+     <!-- or initials fallback -->
+   </div>
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--otn-radius-full);
+    background: var(--otn-primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+    overflow: hidden;
+    font-size: var(--otn-text-sm);
+    font-weight: var(--otn-weight-bold);
+}
+
+.otn-avatar--lg {
+    width: 40px;
+    height: 40px;
+}
+
+.otn-avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--otn-radius-full);
+    object-fit: cover;
+}
+
+
+/* ── 3o. Toast / Snackbar ──────────────────────────────────────────────────
+   Success toast notification.
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: var(--otn-radius-xl);
+    font-size: var(--otn-text-md);
+    font-weight: var(--otn-weight-semibold);
+    z-index: 1100;
+    animation: otn-toast-in .3s ease;
+}
+
+.otn-toast--success {
+    background: var(--otn-green-600);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(22,163,74,.3);
+}
+
+.otn-toast--error {
+    background: var(--otn-red-600);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(220,38,38,.3);
+}
+
+@keyframes otn-toast-in {
+    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+
+/* ── 3p. Preview Box ───────────────────────────────────────────────────────
+   Read-only content preview (green-tinted, monospace).
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-preview-box {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--otn-green-50);
+    border: 1px solid var(--otn-green-200);
+    border-radius: var(--otn-radius-lg);
+    min-height: 100px;
+    max-height: 180px;
+    overflow-y: auto;
+    font-size: var(--otn-text-sm);
+    font-family: var(--otn-font-mono);
+    line-height: var(--otn-leading-normal);
+    white-space: pre-wrap;
+    color: var(--otn-green-900);
+}
+
+
+/* ── 3q. Empty State ───────────────────────────────────────────────────────
+   Centered placeholder for zero-data views.
+   ────────────────────────────────────────────────────────────────────────── */
+.otn-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--otn-gray-500);
+}
+
+.otn-empty h3 {
+    font-size: var(--otn-text-xl);
+    font-weight: var(--otn-weight-semibold);
+    color: var(--otn-gray-700);
+    margin: 0 0 4px 0;
+}
+
+.otn-empty p {
+    font-size: var(--otn-text-base);
+    margin: 0;
+}
+
+
+/* ============================================================================
+   4. SCROLLBAR STYLING
+   ============================================================================ */
+.otn-ds ::-webkit-scrollbar {
+    width: 6px;
+}
+
+.otn-ds ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.otn-ds ::-webkit-scrollbar-thumb {
+    background: var(--otn-gray-300);
+    border-radius: 3px;
+}
+
+.otn-ds ::-webkit-scrollbar-thumb:hover {
+    background: var(--otn-gray-400);
+}
+
+
+/* ============================================================================
+   5. UTILITY ANIMATIONS
+   ============================================================================ */
+@keyframes otn-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.otn-spin {
+    animation: otn-spin .8s linear infinite;
+}
+
+@keyframes otn-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.otn-fade-in {
+    animation: otn-fade-in .2s ease;
+}
+
+
+/* ============================================================================
+   6. DISCIPLINE COLOR MAP
+   ============================================================================
+   Used across Calendar Pref Selector and other clinical views.
+   Apply as a data attribute or modifier class.
+   
+   Usage in JS/React:
+     const DISCIPLINE_COLORS = {
+       ABA:  { bg: '#fef3c7', border: '#fbbf24', text: '#92400e', badge: '#f59e0b' },
+       SLP:  { bg: '#dbeafe', border: '#60a5fa', text: '#1e40af', badge: '#3b82f6' },
+       OT:   { bg: '#dcfce7', border: '#4ade80', text: '#166534', badge: '#22c55e' },
+       PT:   { bg: '#fce7f3', border: '#f472b6', text: '#9d174d', badge: '#ec4899' },
+       MH:   { bg: '#ede9fe', border: '#a78bfa', text: '#5b21b6', badge: '#8b5cf6' },
+     };
+   ============================================================================ */
+
+
+/* ============================================================================
+   7. QUICK-REFERENCE CHEAT SHEET
+   ============================================================================
+   
+   ┌────────────────────┬──────────────────────────────────────────────────┐
+   │ Pattern            │ Classes                                          │
+   ├────────────────────┼──────────────────────────────────────────────────┤
+   │ Wrapper            │ .otn-ds                                          │
+   │ Container          │ .otn-container                                   │
+   │ Header             │ .otn-header .otn-header-brand / -primary         │
+   │ Button primary     │ .otn-btn .otn-btn-primary                        │
+   │ Button secondary   │ .otn-btn .otn-btn-secondary                      │
+   │ Button danger      │ .otn-btn .otn-btn-danger                         │
+   │ Button ghost       │ .otn-btn .otn-btn-ghost                          │
+   │ Button icon        │ .otn-btn .otn-btn-icon                           │
+   │ Button header icon │ .otn-btn .otn-btn-header-icon                    │
+   │ Card               │ .otn-card  (+--selected, --muted, --dragging)    │
+   │ Icon box           │ .otn-icon-box --sm/md/lg/xl --blue/green/red/…   │
+   │ Badge              │ .otn-badge --blue/green/red/amber/purple/muted   │
+   │ Tag                │ .otn-tag --blue/green/red/amber/muted            │
+   │ Pill               │ .otn-pill  (+--active, --active-blue, -green)    │
+   │ Tab bar            │ .otn-tab-bar > .otn-tab (+--active)              │
+   │ Chip filter        │ .otn-chip-row > .otn-chip (+--active)            │
+   │ Input              │ .otn-input                                       │
+   │ Textarea           │ .otn-textarea                                    │
+   │ Search             │ .otn-search > svg + .otn-search-input            │
+   │ Dropdown           │ .otn-dropdown > .otn-dropdown-option             │
+   │ Modal              │ .otn-overlay > .otn-dialog                       │
+   │ Alert banner       │ .otn-alert --red/amber/blue/green                │
+   │ Section header     │ .otn-section-header                              │
+   │ Avatar             │ .otn-avatar (+--lg)                              │
+   │ Toast              │ .otn-toast --success/--error                     │
+   │ Preview box        │ .otn-preview-box                                 │
+   │ Empty state        │ .otn-empty                                       │
+   │ Label              │ .otn-label + .otn-label-hint                     │
+   │ Spinner            │ .otn-spin                                        │
+   │                    │                                                  │
+   │ ── JS-driven states (Section 8) ──────────────────────────────────    │
+   │ CPS drag states    │ .cps-card-dragging / -drop-target                │
+   │ CPS scroll zones   │ .cps-scroll-zone-top / -bottom                   │
+   │ CPS selection      │ .cps-card-selected / .cps-clinic-selected        │
+   │ CPS buttons        │ .cps-btn-disabled / .cps-cancel-active           │
+   │ PM send states     │ .pm-send-ready / -disabled / -success            │
+   │ PM token highlight │ .pm-token-unresolved                             │
+   │ PM template states │ .pm-tpl-selected / -unavailable                  │
+   │ PM editor saves    │ .pm-editor-save-active / -muted / -saving        │
+   │ PM opt-in          │ .pm-pi-optin-yes / -no / -unknown / -saving      │
+   └────────────────────┴──────────────────────────────────────────────────┘
+   
+   ============================================================================ */
+
+
+/* ============================================================================
+   8. JS-DRIVEN STATE CLASSES
+   ============================================================================
+   
+   These classes are toggled by JavaScript at runtime in response to user
+   interactions. They are the bridge between the behavioral layer (documented
+   in OTN-JS-PATTERNS.md) and the visual layer.
+   
+   Organized by component, then by interaction category.
+   CSS extracted directly from the production component stylesheets.
+   ============================================================================ */
+
+
+/* ============================================================================
+   8A. CALENDAR PREFERENCE SELECTOR (cps-) STATE CLASSES
+   ============================================================================ */
+
+/* ── Drag & Drop States ─────────────────────────────────────────────────── */
+
+/* Applied to the card being dragged. Fades it to show "picked up" state. */
+/* Trigger: dragstart event → this.draggedIndex = i → render()             */
+.otn-ds .cps-card-dragging {
+    opacity: .5;
+    border-color: var(--otn-blue-600, #3b82f6);
+    background: #dbeafe;
+}
+
+/* Applied to the card currently under the drag cursor (valid drop target). */
+/* Trigger: dragover event → this.dropTargetIndex = i                      */
+/* Cleared: dragleave, drop, dragend                                        */
+.otn-ds .cps-card-drop-target {
+    border-color: #22c55e;
+    background: #f0fdf4;
+    transform: scale(1.02);
+}
+
+/* Auto-scroll zone indicators — blue border appears at container edge     */
+/* Trigger: dragover within 60px of panel top/bottom edge                  */
+/* Cleared: dragend, when mouse moves away from edge                       */
+.otn-ds .cps-scroll-zone-top {
+    border-top: 3px solid var(--otn-blue-600, #3b82f6);
+}
+
+.otn-ds .cps-scroll-zone-bottom {
+    border-bottom: 3px solid var(--otn-blue-600, #3b82f6);
+}
+
+/* ── Selection States ───────────────────────────────────────────────────── */
+
+/* Card is selected (clicked) in either Available or Selected panel.        */
+/* Trigger: click handler → toggles this.availableSelected / workingSelected */
+.otn-ds .cps-card-selected,
+.otn-ds .cps-card-selected-highlight {
+    border-color: var(--otn-blue-600, #3b82f6);
+    background: #eff6ff;
+}
+
+/* Currently selected clinic in the dropdown menu.                          */
+/* Trigger: clinicId matches this.currentClinicId                           */
+.otn-ds .cps-clinic-selected {
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+/* Active discipline filter chip. Colors are applied inline by JS           */
+/* using DISCIPLINE_COLORS, so this class only sets font-weight.            */
+/* Trigger: click handler → this.filterDiscipline = value                   */
+.otn-ds .cps-filter-active {
+    font-weight: 600;
+    /* Note: background, color, border-color set inline via JS */
+}
+
+/* Active sort option in the sort dropdown.                                 */
+/* Trigger: this.sortMode matches the option's value                       */
+.otn-ds .cps-sort-selected {
+    background: #eff6ff;
+}
+
+/* ── Button States ──────────────────────────────────────────────────────── */
+
+/* Save button disabled — no unsaved changes or currently saving.           */
+/* Trigger: !this.hasUnsavedChanges || this.isSaving                       */
+.otn-ds .cps-btn-disabled {
+    background: rgba(255,255,255,.5);
+    color: rgba(29,78,216,.5);
+    cursor: not-allowed;
+}
+
+/* Cancel button active — pulsing amber when there are unsaved changes.     */
+/* Trigger: this.hasUnsavedChanges === true                                */
+.otn-ds .cps-cancel-active {
+    background: #f59e0b;
+    border-color: #f59e0b;
+    color: #fff;
+    box-shadow: 0 0 0 3px rgba(245,158,11,.3);
+    animation: cps-pulse-cancel 2s ease-in-out infinite;
+}
+
+.otn-ds .cps-cancel-active:hover {
+    background: #d97706;
+    border-color: #d97706;
+}
+
+@keyframes cps-pulse-cancel {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(245,158,11,.3); }
+    50% { box-shadow: 0 0 0 6px rgba(245,158,11,.15); }
+}
+
+/* ── Unsaved Changes Indicator ──────────────────────────────────────────── */
+
+/* Yellow dot next to clinic name when that clinic has pending changes.      */
+/* Trigger: hasUnsavedChanges for the displayed clinic                      */
+.otn-ds .cps-change-dot {
+    width: 8px;
+    height: 8px;
+    background: #fbbf24;
+    border-radius: 50%;
+}
+
+
+/* ============================================================================
+   8B. PATIENT MESSAGING (pm-) STATE CLASSES
+   ============================================================================ */
+
+/* ── Send Button States ─────────────────────────────────────────────────── */
+
+/* Ready to send — message has content, phone selected, no blockers.        */
+/* Trigger: hasPhone && hasMessage && !hasUnresolvedTokens && optedIn       */
+.otn-ds .pm-send-ready {
+    background: linear-gradient(135deg, var(--otn-blue-600, #2563eb), var(--otn-blue-700, #1d4ed8));
+    color: #fff;
+    box-shadow: var(--otn-shadow-primary, 0 2px 4px rgba(37,99,235,.3));
+}
+
+.otn-ds .pm-send-ready:hover {
+    opacity: .9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(37,99,235,.3);
+}
+
+/* Send blocked — missing required data or conditions not met.              */
+/* Trigger: !hasPhone || !hasMessage || !optedIn                           */
+.otn-ds .pm-send-disabled {
+    background: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* Send succeeded — brief green flash before auto-close.                    */
+/* Trigger: showSuccess = true → 1800ms → close popup                      */
+.otn-ds .pm-send-success {
+    background: var(--otn-green-700, #16a34a);
+    color: #fff;
+}
+
+/* Confirmation dialog — send button blocked (unresolved tokens).           */
+/* Trigger: hasUnresolvedTokens(customMessage) in confirm dialog           */
+.otn-ds .pm-confirm-send-blocked {
+    background: #e5e7eb !important;
+    color: #9ca3af !important;
+    cursor: not-allowed !important;
+    border: 1px solid #d1d5db !important;
+}
+
+/* ── Token Resolution States ────────────────────────────────────────────── */
+
+/* Inline highlight for unresolved {{tokens}} in message preview.           */
+/* Trigger: highlightUnresolvedTokens() wraps each {{...}} pattern         */
+/* Appears in: confirmation dialog preview, send view message footer        */
+.otn-ds .pm-token-unresolved {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: var(--otn-red-600, #dc2626);
+    font-weight: 600;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 11px;
+}
+
+/* ── Template Card States ───────────────────────────────────────────────── */
+
+/* Selected template in the browser list.                                   */
+/* Trigger: tpl.id === this.selectedTemplateId                             */
+.otn-ds .pm-tpl-selected {
+    border-color: var(--otn-blue-600, #3b82f6);
+    background: #eff6ff;
+}
+
+.otn-ds .pm-tpl-selected .pm-tpl-icon-wrap {
+    background: var(--otn-blue-600, #2563eb);
+    color: #fff;
+}
+
+/* Template unavailable — needs context data not present (e.g., no appt).   */
+/* Trigger: tpl.missingContext.length > 0                                  */
+.otn-ds .pm-tpl-unavailable {
+    opacity: 0.55;
+    cursor: pointer;
+}
+
+.otn-ds .pm-tpl-unavailable:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    opacity: 0.75;
+}
+
+.otn-ds .pm-tpl-unavailable .pm-tpl-icon-wrap {
+    filter: grayscale(1);
+}
+
+/* ── Language Toggle States ─────────────────────────────────────────────── */
+
+/* Active language button — green pill on currently displayed language.      */
+/* Trigger: this.language === 'en'|'es'|'other'                            */
+.otn-ds .pm-lang-active {
+    background: var(--otn-green-700, #059669);
+    color: #fff;
+    box-shadow: 0 1px 2px rgba(5,150,105,.25);
+}
+
+/* Disabled language — no content available in this language.               */
+/* Trigger: template has no message text for this language                  */
+.otn-ds .pm-lang-disabled {
+    color: #d1d5db;
+    cursor: not-allowed;
+    opacity: .5;
+}
+
+/* ── Navigation Tab States ──────────────────────────────────────────────── */
+
+/* Active tab in template browser (Suggested / Browse All / Pinned).        */
+/* Trigger: this.templateTab === 'suggested'|'all'|'pinned'                */
+.otn-ds .pm-nav-active {
+    background: #fff;
+    color: #111827;
+    font-weight: 600;
+    box-shadow: 0 1px 2px rgba(0,0,0,.08);
+}
+
+/* ── Phone Selection ────────────────────────────────────────────────────── */
+
+/* Selected phone option in the dropdown.                                   */
+/* Trigger: phoneOption.key === this.selectedPhone                         */
+.otn-ds .pm-phone-selected {
+    background: #eff6ff;
+}
+
+/* ── Manage View — Sidebar + List States ────────────────────────────────── */
+
+/* Active sidebar filter item (All, System, Shared, Personal, etc.).        */
+/* Trigger: this.manageFilter === item.key                                 */
+.otn-ds .pm-sidebar-active {
+    background: #fff;
+    color: #111827;
+    font-weight: 600;
+    box-shadow: 0 1px 2px rgba(0,0,0,.06);
+}
+
+/* Muted card — needs translation into the selected manage-view language.   */
+/* Trigger: template lacks message content for this.manageLang             */
+.otn-ds .pm-manage-card-muted {
+    opacity: .55;
+    background: #fafafa;
+    border-style: dashed;
+}
+
+.otn-ds .pm-manage-card-muted:hover {
+    opacity: .85;
+}
+
+.otn-ds .pm-manage-card-muted .pm-manage-card-icon {
+    background: #f3f4f6;
+    color: #9ca3af;
+}
+
+/* Translated section toggle — chevron rotates when open.                   */
+/* Trigger: this.manageTranslatedOpen = true                               */
+/* Note: when NOT open, chevron is rotated -90deg via CSS                   */
+.otn-ds .pm-manage-tr-open svg {
+    /* Default (open): no transform — chevron points down */
+}
+
+/* Needs-translation section toggle — chevron rotates when open.            */
+/* Trigger: this.manageNeedsTranslationOpen = true                         */
+.otn-ds .pm-manage-nt-open svg {
+    transform: rotate(180deg);
+}
+
+/* Pin button active state — amber fill when template is pinned.            */
+/* Trigger: tpl.isPinned === true                                          */
+.otn-ds .pm-action-pin-active {
+    color: #f59e0b !important;
+    background: #fffbeb !important;
+}
+
+.otn-ds .pm-action-pin-active:hover {
+    color: #d97706 !important;
+    background: #fef3c7 !important;
+}
+
+/* ── Editor States ──────────────────────────────────────────────────────── */
+
+/* Save button — active (has unsaved changes, ready to save).               */
+/* Trigger: this.isEditorDirty() && !this.isSavingTemplate                 */
+.otn-ds .pm-editor-save-active {
+    background: linear-gradient(135deg, var(--otn-blue-600, #2563eb), var(--otn-blue-700, #1d4ed8));
+    color: #fff;
+    box-shadow: var(--otn-shadow-primary, 0 2px 4px rgba(37,99,235,.3));
+}
+
+.otn-ds .pm-editor-save-active:hover {
+    opacity: .9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(37,99,235,.3);
+}
+
+/* Save button — muted (no unsaved changes).                                */
+/* Trigger: !this.isEditorDirty()                                          */
+.otn-ds .pm-editor-save-muted {
+    background: rgba(255,255,255,.2);
+    color: rgba(255,255,255,.7);
+    border: 1px solid rgba(255,255,255,.25);
+}
+
+.otn-ds .pm-editor-save-muted:hover {
+    background: rgba(255,255,255,.3);
+    color: #fff;
+}
+
+/* Save button — saving in progress (spinner + disabled).                   */
+/* Trigger: this.isSavingTemplate === true                                 */
+.otn-ds .pm-editor-save-saving {
+    background: rgba(255,255,255,.15);
+    color: rgba(255,255,255,.5);
+    cursor: not-allowed;
+}
+
+/* Preview toggle active — blue highlight when previewing resolved tokens.  */
+/* Trigger: this.editorPreview === true                                    */
+.otn-ds .pm-preview-active {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1d4ed8;
+}
+
+/* Visibility toggle — shared/global template.                              */
+/* Trigger: this.editorForm.isGlobal === true                              */
+.otn-ds .pm-toggle-shared {
+    background: #f5f3ff;
+    border-color: #c4b5fd;
+    color: var(--otn-purple-600, #6d28d9);
+    font-weight: 700;
+    box-shadow: 0 1px 3px rgba(109,40,217,.12);
+}
+
+/* Visibility toggle — system template.                                     */
+/* Trigger: this.editorForm.isSystem === true                              */
+.otn-ds .pm-toggle-system {
+    background: #fffbeb;
+    border-color: #fbbf24;
+    color: #92400e;
+    font-weight: 700;
+    box-shadow: 0 1px 3px rgba(245,158,11,.12);
+}
+
+/* Selected icon in the template icon picker.                               */
+/* Trigger: iconKey === this.editorForm.icon                               */
+.otn-ds .pm-icon-selected {
+    background: #eff6ff;
+    color: var(--otn-blue-600, #2563eb);
+}
+
+/* Active role/function pill in the editor.                                 */
+/* Trigger: role/function is included in editorForm.roles/functions         */
+.otn-ds .pm-pill-active {
+    font-weight: 700;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    /* Note: background, color, border-color set inline via JS per role/function */
+}
+
+/* ── Patient Info Dialog — Opt-In States ────────────────────────────────── */
+
+/* Patient has opted IN to SMS.                                             */
+/* Trigger: context.patient.textOptIn === 'Yes'                            */
+.otn-ds .pm-pi-optin-yes {
+    color: var(--otn-green-700, #059669);
+}
+
+/* Patient has opted OUT of SMS.                                            */
+/* Trigger: context.patient.textOptIn === 'No'                             */
+.otn-ds .pm-pi-optin-no {
+    color: var(--otn-red-600, #dc2626);
+}
+
+/* Patient opt-in status is unknown/blank.                                  */
+/* Trigger: context.patient.textOptIn is empty or unrecognized             */
+.otn-ds .pm-pi-optin-unknown {
+    color: var(--otn-amber-600, #d97706);
+}
+
+/* Saving opt-in status — spinner animation on icon.                        */
+/* Trigger: this.isSavingOptIn === true                                    */
+.otn-ds .pm-pi-optin-saving {
+    color: var(--otn-blue-600, #2563eb);
+}
+
+.otn-ds .pm-pi-optin-saving svg {
+    animation: pm-spin 1s linear infinite;
+}
+
+/* Opt-in toggle button — currently active selection.                       */
+/* Trigger: button matches current opt-in value                            */
+.otn-ds .pm-pi-optin-btn-active {
+    background: #dcfce7;
+    border-color: #86efac;
+    color: var(--otn-green-700, #059669);
+    font-weight: 600;
+}
+
+/* Opt-in toggle button — disabled during save.                             */
+/* Trigger: this.isSavingOptIn === true                                    */
+.otn-ds .pm-pi-optin-btn-disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ── Patient Info Dialog — Phone States ─────────────────────────────────── */
+
+/* Currently selected phone for messaging.                                  */
+/* Trigger: phone.key === this.selectedPhone                               */
+.otn-ds .pm-pi-phone-active {
+    border-color: var(--otn-blue-600, #3b82f6);
+    background: #eff6ff;
+}
+
+/* Empty phone slot — dashed border, muted background.                      */
+/* Trigger: phone number field is blank for this slot                      */
+.otn-ds .pm-pi-phone-empty {
+    border-style: dashed !important;
+    border-color: #d1d5db !important;
+    background: #fafafa !important;
+}
+
+.otn-ds .pm-pi-phone-empty:hover {
+    border-color: #93c5fd !important;
+    background: #f0f7ff !important;
+}
+
+@keyframes pm-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
+/* ============================================================================
+   8C. STATE CLASS QUICK REFERENCE
+   ============================================================================
+
+   CALENDAR PREFERENCE SELECTOR (cps-)
+   ┌──────────────────────────┬────────────────────────────────────────────┐
+   │ Class                    │ Trigger                                    │
+   ├──────────────────────────┼────────────────────────────────────────────┤
+   │ .cps-card-dragging       │ dragstart event on card                    │
+   │ .cps-card-drop-target    │ dragover event — card under cursor         │
+   │ .cps-scroll-zone-top     │ drag near top edge (60px threshold)        │
+   │ .cps-scroll-zone-bottom  │ drag near bottom edge (60px threshold)     │
+   │ .cps-card-selected       │ click to select card                       │
+   │ .cps-clinic-selected     │ clinic matches currentClinicId             │
+   │ .cps-filter-active       │ discipline filter chip clicked             │
+   │ .cps-sort-selected       │ sort option matches sortMode               │
+   │ .cps-btn-disabled        │ no unsaved changes / saving                │
+   │ .cps-cancel-active       │ hasUnsavedChanges (pulsing amber)          │
+   │ .cps-change-dot          │ unsaved changes indicator dot              │
+   └──────────────────────────┴────────────────────────────────────────────┘
+
+   PATIENT MESSAGING (pm-) — Send Flow
+   ┌──────────────────────────┬────────────────────────────────────────────┐
+   │ .pm-send-ready           │ all conditions met → blue gradient         │
+   │ .pm-send-disabled        │ missing phone/message/opt-in → gray        │
+   │ .pm-send-success         │ send succeeded → green flash               │
+   │ .pm-confirm-send-blocked │ unresolved tokens in confirm dialog        │
+   │ .pm-token-unresolved     │ {{token}} not resolved → red highlight     │
+   └──────────────────────────┴────────────────────────────────────────────┘
+
+   PATIENT MESSAGING (pm-) — Template Browser
+   ┌──────────────────────────┬────────────────────────────────────────────┐
+   │ .pm-tpl-selected         │ template card is active selection          │
+   │ .pm-tpl-unavailable      │ template needs missing context (grayed)    │
+   │ .pm-nav-active           │ active browser tab (Suggested/All/Pinned)  │
+   │ .pm-lang-active          │ active language button (green pill)        │
+   │ .pm-lang-disabled        │ language has no content (grayed out)       │
+   │ .pm-phone-selected       │ active phone option in dropdown            │
+   └──────────────────────────┴────────────────────────────────────────────┘
+
+   PATIENT MESSAGING (pm-) — Manage View
+   ┌──────────────────────────┬────────────────────────────────────────────┐
+   │ .pm-sidebar-active        │ active sidebar filter item                │
+   │ .pm-manage-card-muted    │ needs translation (dashed, faded)          │
+   │ .pm-manage-tr-open       │ translated section expanded                │
+   │ .pm-manage-nt-open       │ needs-translation section expanded         │
+   │ .pm-action-pin-active    │ template is pinned (amber star)            │
+   └──────────────────────────┴────────────────────────────────────────────┘
+
+   PATIENT MESSAGING (pm-) — Editor
+   ┌──────────────────────────┬────────────────────────────────────────────┐
+   │ .pm-editor-save-active   │ dirty + not saving → blue gradient         │
+   │ .pm-editor-save-muted    │ clean (no changes) → translucent           │
+   │ .pm-editor-save-saving   │ save in progress → disabled + spinner      │
+   │ .pm-preview-active       │ preview mode on → blue highlight           │
+   │ .pm-toggle-shared        │ template is shared → purple pill           │
+   │ .pm-toggle-system        │ template is system → amber pill            │
+   │ .pm-icon-selected        │ selected icon in picker → blue highlight   │
+   │ .pm-pill-active          │ active role/function pill → bold+shadow    │
+   └──────────────────────────┴────────────────────────────────────────────┘
+
+   PATIENT MESSAGING (pm-) — Patient Info / Opt-In
+   ┌──────────────────────────┬────────────────────────────────────────────┐
+   │ .pm-pi-optin-yes         │ opted in → green                           │
+   │ .pm-pi-optin-no          │ opted out → red                            │
+   │ .pm-pi-optin-unknown     │ unknown → amber                            │
+   │ .pm-pi-optin-saving      │ saving → blue spinner                      │
+   │ .pm-pi-optin-btn-active  │ currently active opt-in button             │
+   │ .pm-pi-optin-btn-disabled│ buttons disabled during save               │
+   │ .pm-pi-phone-active      │ selected phone card → blue border          │
+   │ .pm-pi-phone-empty       │ empty phone slot → dashed border           │
+   └──────────────────────────┴────────────────────────────────────────────┘
+
+   ============================================================================ */
