@@ -1,13 +1,13 @@
-# OTN JavaScript Patterns — Behavioral Reference
+# ONE JavaScript Patterns — Behavioral Reference
 
 ## Overview
 
-Companion to `otn-design-system.css` and `OTN-DESIGN-SYSTEM.md`. This document captures the **behavioral layer** — icons, interaction flows, data shapes, state management, and Skuid integration patterns — extracted from two production components:
+Companion to `one-design-system.css` and `ONE-DESIGN-SYSTEM.md`. This document captures the **behavioral layer** — icons, interaction flows, data shapes, state management, and Skuid integration patterns — extracted from two production components:
 
 - **Patient Messaging** (`pm-` prefix) — template-driven SMS sending with multi-language support
 - **Calendar Preference Selector** (`cps-` prefix) — drag-and-drop clinician list builder
 
-Use this alongside the CSS design system when building new OTN components so they look **and behave** consistently.
+Use this alongside the CSS design system when building new ONE components so they look **and behave** consistently.
 
 ---
 
@@ -29,7 +29,7 @@ All icons are inline SVGs using Lucide-style stroked paths. No icon font or exte
 
 ```javascript
 // These icons are used across multiple components and should be
-// considered the "core" OTN icon vocabulary.
+// considered the "core" ONE icon vocabulary.
 var OTN_SHARED_ICONS = {
     user:        /* 14–20px */ 'person silhouette — avatars, personal visibility',
     search:      /* 16–18px */ 'magnifying glass — search inputs',
@@ -173,7 +173,7 @@ Colors are applied inline via `style` attributes, not CSS classes. This is the s
 // Badge on a clinician card
 var colors = DISCIPLINE_COLORS[clinician.discipline] || DEFAULT_DISCIPLINE_COLOR;
 
-var badgeHtml = '<span class="otn-badge" style="' +
+var badgeHtml = '<span class="one-badge" style="' +
     'background: ' + colors.bg + '; ' +
     'color: ' + colors.text + '; ' +
     'border: 1px solid ' + colors.border + ';">' +
@@ -807,7 +807,7 @@ var ALLOW_DIRECTOR_EDIT_SYSTEM = true;
 
 ## 9. For AI Assistants — Building New Components
 
-When generating a new OTN Skuid component, follow these behavioral patterns:
+When generating a new ONE Skuid component, follow these behavioral patterns:
 
 1. **Structure**: Constructor function assigned to `comp.componentName`. Use prototype methods. Store state as `this.*` properties.
 
@@ -833,6 +833,6 @@ When generating a new OTN Skuid component, follow these behavioral patterns:
 
 ## 10. State Class Cross-Reference
 
-The CSS definitions for all JS-driven state classes documented in this file now live in **Section 8** of `otn-design-system.css`. The quick-reference tables are in `OTN-DESIGN-SYSTEM.md` under "JS-Driven State Classes."
+The CSS definitions for all JS-driven state classes documented in this file now live in **Section 8** of `one-design-system.css`. The quick-reference tables are in `ONE-DESIGN-SYSTEM.md` under "JS-Driven State Classes."
 
 **44 state classes total** — 12 CPS, 32 PM — covering drag-and-drop, selection, send flow, token resolution, template management, editor toggles, and opt-in states. Each CSS rule includes a comment identifying the JS trigger that toggles it.

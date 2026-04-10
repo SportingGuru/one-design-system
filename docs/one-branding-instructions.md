@@ -1,4 +1,4 @@
-# OTN Branding — Claude Code Instructions
+# ONE Branding — Claude Code Instructions
 
 ---
 
@@ -6,7 +6,7 @@
 
 1. In Salesforce Setup, go to **Static Resources → New**
 2. Name it exactly: `OTN_Logo`
-3. Upload the `otn-logo.png` file
+3. Upload the `one-logo.png` file
 4. Cache Control: **Public**
 5. Save
 
@@ -14,7 +14,7 @@ The logo URL in Skuid JS will then be: `/resource/OTN_Logo`
 
 ---
 
-## Change 1 — `Css_for_modeler`: Add OTN brand variables
+## Change 1 — `Css_for_modeler`: Add ONE brand variables
 
 ### 1a. Replace the accent color variables
 
@@ -28,9 +28,9 @@ Replace with:
 ```css
     --acc: #1C1A55;
     --acc-bg: #EEEDF8;
-    --otn-navy: #1C1A55;
-    --otn-coral: #C95244;
-    --otn-blue: #1C1A55;
+    --one-navy: #1C1A55;
+    --one-coral: #C95244;
+    --one-blue: #1C1A55;
 ```
 
 ---
@@ -40,7 +40,7 @@ Replace with:
 Append this block at the very end of `Css_for_modeler`:
 
 ```css
-/* ── OTN Brand Bar ─────────────────────────────────────────── */
+/* ── ONE Brand Bar ─────────────────────────────────────────── */
 .mod-brand-bar {
     display: flex;
     align-items: center;
